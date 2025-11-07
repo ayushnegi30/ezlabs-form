@@ -16,6 +16,8 @@ npm run dev
 ## Postman
 - Postman collection: postman/EZLabs-Contact.postman_collection.json
 - Example request body:
+- Example API response: [postman/contact-response.json](postman/contact-response.json)
+
 \`\`\`json
 {
   "name": "Amit",
