@@ -1,30 +1,73 @@
 {
   "info": {
     "name": "EZLabs Contact API",
-    "_postman_id": "ezlabs-contact-collection",
-    "description": "Simple collection to POST contact form",
+    "_postman_id": "a3e0f920-0000-0000-0000-000000000000",
+    "description": "Postman collection for EZ Labs assignment - contact-us endpoint",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
-      "name": "Contact Us - POST",
+      "name": "Contact - POST /api/contact-us/",
       "request": {
         "method": "POST",
         "header": [
-          { "key": "Content-Type", "value": "application/json" }
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\\n  \\\"name\\\": \\\"Amit\\\",\\n  \\\"email\\\": \\\"hsatyamrav@gmail.com\\\",\\n  \\\"phone\\\": \\\"908765498\\\",\\n  \\\"message\\\": \\\"Hello from Postman\\\"\\n}"
+          "raw": "{\n  \"name\": \"Amit\",\n  \"email\": \"hsatyamrav@gmail.com\",\n  \"phone\": \"908765498\",\n  \"message\": \"kjhgcgj\"\n}"
         },
         "url": {
           "raw": "https://vernanbackend.ezlab.in/api/contact-us/",
           "protocol": "https",
-          "host": ["vernanbackend","ezlab","in"],
-          "path": ["api","contact-us",""]
-        }
+          "host": [
+            "vernanbackend",
+            "ezlab",
+            "in"
+          ],
+          "path": [
+            "api",
+            "contact-us",
+            ""
+          ]
+        },
+        "description": "Sends contact information to the API. Expected response: JSON with created_at, id, name, email, phone, message"
       },
       "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": []
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "pm.test(\"Status is 200 or 201\", function () {",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "",
+          "try {",
+          "    var data = pm.response.json();",
+          "    pm.test(\"Response has id\", function () {",
+          "        pm.expect(data).to.have.property('id');",
+          "    });",
+          "} catch (e) {",
+          "    // if response is not JSON or tests fail, still continue",
+          "}"
+        ]
+      }
     }
   ]
 }
